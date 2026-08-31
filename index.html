@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ChowMagician — Free 7-Day Meal Planner with Macros &amp; Dietary Filters</title>
+<meta name="description" content="ChowMagician builds a free personalized 7-day meal plan around your calorie and protein goals, custom macro ratios, and dietary needs — vegetarian, vegan, gluten-free, dairy-free, heart- and kidney-healthy — with full recipes for every meal.">
+<link rel="canonical" href="https://chowmagician.com/">
+<meta name="theme-color" content="#2e9e6b">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ChowMagician">
+<meta property="og:url" content="https://chowmagician.com/">
+<meta property="og:title" content="ChowMagician — Free 7-Day Meal Planner">
+<meta property="og:description" content="Get a personalized 7-day meal plan built around your calories, protein, custom macro ratios, and dietary restrictions — with full recipes.">
+<meta property="og:image" content="https://chowmagician.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ChowMagician — Free 7-Day Meal Planner">
+<meta name="twitter:description" content="Personalized 7-day meal plans built around your calories, protein, macros, and dietary needs — with full recipes.">
+<meta name="twitter:image" content="https://chowmagician.com/og.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"ChowMagician","url":"https://chowmagician.com/","applicationCategory":"HealthApplication","operatingSystem":"Web","description":"Free personalized 7-day meal planner built around your calorie, protein, and macro goals and dietary restrictions, with full recipes.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --bg:#f6f8f5; --card:#fff; --ink:#1f2a24; --muted:#6b7a70; --line:#e2e8e2;
+         --green:#2e9e6b; --green-d:#1f7a52; --amber:#c98a1e; }
+  *{box-sizing:border-box}
+  body{margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+       background:var(--bg); color:var(--ink); line-height:1.45}
+  header{max-width:1400px; margin:0 auto; padding:26px 20px 6px}
+  h1{margin:0; font-size:26px; letter-spacing:-.3px; display:inline-flex; align-items:center; gap:2px}
+  h1 .accent{color:var(--green)}
+  h1 .logo{width:46px; height:46px; flex:0 0 auto}
+  .wordmark{font-family:'Montserrat',-apple-system,sans-serif; font-weight:700; font-size:30px; letter-spacing:-.5px; color:var(--green)}
+  .wordmark .accent{color:inherit}   /* all black — no green accent */
+  header p{margin:4px 0 0; color:var(--muted); font-size:14px}
+  main{max-width:1400px; margin:14px auto 60px; padding:0 20px}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:20px;
+        box-shadow:0 4px 16px rgba(20,40,30,.05)}
+  label{display:block; font-size:13px; color:var(--muted); margin:0 0 5px; font-weight:600}
+  .row{display:flex; gap:16px; flex-wrap:wrap}
+  .row > div{flex:1; min-width:160px}
+  input[type=number]{width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:9px;
+       font-size:15px; background:#fff; color:var(--ink)}
+  select.sel{padding:10px 12px; border:1px solid var(--line); border-radius:9px; font-size:15px;
+       background:#fff; color:var(--ink); min-width:230px; font-family:inherit; cursor:pointer}
+  .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:4px}
+  .chip{display:inline-flex; align-items:center; gap:7px; border:1px solid var(--line);
+        border-radius:20px; padding:8px 13px; font-size:13.5px; cursor:pointer; user-select:none; background:#fff}
+  .chip input{accent-color:var(--green)}
+  .chip:has(input:checked){border-color:var(--green); background:#eaf6ef; color:var(--green-d); font-weight:600}
+  .go{margin-top:18px; border:none; border-radius:10px; background:var(--green); color:#fff;
+      font-size:15px; font-weight:700; padding:12px 22px; cursor:pointer}
+  .go:hover{background:var(--green-d)}
+  .disclaimer{font-size:11.5px; color:var(--muted); margin-top:14px}
+  /* macro widget */
+  .macro-head{margin-top:16px; display:flex; align-items:center; justify-content:flex-start; gap:10px}
+  .macro-title{font-size:13.5px; font-weight:600; color:var(--muted)}
+  .switch{position:relative; top:3px; display:inline-block; width:40px; height:22px; flex:0 0 auto; cursor:pointer}
+  .switch input{position:absolute; opacity:0; width:0; height:0}
+  .switch .track{position:absolute; inset:0; background:#cfd6d0; border-radius:22px; transition:background .18s}
+  .switch .track::before{content:""; position:absolute; height:16px; width:16px; left:3px; top:3px;
+                         background:#fff; border-radius:50%; box-shadow:0 1px 2px rgba(0,0,0,.2); transition:transform .18s}
+  .switch input:checked + .track{background:var(--green)}
+  .switch input:checked + .track::before{transform:translateX(18px)}
+  .macro-panel{margin-top:12px; padding:14px 16px; border:1px solid var(--line); border-radius:12px;
+               background:#fbfdfb; display:flex; gap:20px; align-items:center; flex-wrap:wrap;
+               transition:opacity .18s, filter .18s}
+  .macro-panel.off{opacity:.5; pointer-events:none; filter:grayscale(.6)}   /* deactivated look */
+  .pie{width:118px; height:118px; border-radius:50%; flex:0 0 auto; box-shadow:0 2px 8px rgba(20,40,30,.08)}
+  .macro-controls{flex:1; min-width:250px}
+  .mrow{display:flex; align-items:center; gap:9px; font-size:13px; margin:5px 0}
+  .mrow .dot{width:11px; height:11px; border-radius:50%; flex:0 0 auto}
+  .mrow .mname{width:54px; color:var(--muted); font-weight:600}
+  .mrow input[type=range]{flex:1; accent-color:var(--green)}
+  .mrow .mval{width:82px; text-align:right; font-variant-numeric:tabular-nums; font-weight:600; color:var(--ink)}
+  .presets{display:flex; flex-wrap:wrap; gap:6px; margin-top:9px}
+  .presets button{border:1px solid var(--line); background:#fff; border-radius:16px; padding:5px 11px;
+                  font-size:12px; cursor:pointer; color:var(--ink)}
+  .presets button:hover{border-color:var(--green); color:var(--green-d)}
+  .macro-note{font-size:11px; color:var(--muted); margin:9px 0 0}
+  input:disabled{background:#f0f2f0; color:#aaa; cursor:not-allowed}
+  /* plan */
+  .plan-head{display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:8px;
+             margin:26px 4px 12px}
+  .plan-head h2{margin:0; font-size:19px}
+  .plan-head .sub{color:var(--muted); font-size:13px}
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:14px}
+  .day{background:#F6F7F8; border:1px solid #9db2a1; border-radius:12px; overflow:hidden;
+       display:flex; flex-direction:column}
+  .day-h{background:#DCE8DC; padding:9px 14px; font-weight:700; font-size:14px; border-bottom:1px solid var(--line);
+         display:flex; justify-content:space-between; align-items:center}
+  .day-h .tot{font-size:11.5px; color:var(--muted); font-weight:600}
+  .day-macros{padding:5px 14px; font-size:11px; color:var(--muted); font-weight:600;
+              border-bottom:1px solid var(--line); background:#ECF2EC}
+  .slot{padding:10px 14px; border-bottom:1px solid var(--line); transition:background .12s ease;
+        flex:0 0 auto}   /* natural height */
+  .slot-breakfast, .slot-dinner{background:#F6F7F8}
+  .slot-lunch{background:#F2F2F7}
+  .slot:hover{background:#E5E6EB; cursor:pointer}   /* hover affordance for future click-through */
+  .slot:last-child{border-bottom:none; flex:1 0 auto}   /* dinner grows to fill the card, so the
+                                                            space below it shares dinner's hover color */
+  .slot .lbl{font-size:10.5px; text-transform:uppercase; letter-spacing:.5px; color:var(--muted)}
+  details summary{cursor:pointer; list-style:none; font-size:14px; font-weight:600; margin-top:2px}
+  details summary::-webkit-details-marker{display:none}
+  .meal-name{font-size:14px; font-weight:600; margin-top:2px}
+  details.recipe summary{font-size:12.5px; font-weight:600; color:var(--green-d); margin-top:9px;
+                         display:inline-flex; align-items:center; gap:6px}
+  details.recipe .chev{font-size:16px; line-height:1; transition:transform .18s ease}
+  details.recipe[open] summary .chev{transform:rotate(180deg)}
+  .meal-img{width:100%; height:130px; object-fit:cover; border-radius:8px; margin-top:6px; display:block}
+  .macros{font-size:11.5px; color:var(--green-d); font-weight:600; margin-top:2px}
+  .recipe-cue{margin-top:10px; font-size:12.5px; font-weight:600; color:var(--green-d);
+              display:inline-flex; align-items:center; gap:5px}
+  .recipe-cue .tri{font-size:11px}
+  .micros{font-size:11px; color:#a06a12; font-weight:600; margin-top:2px}
+  .micros .est{color:var(--muted); font-weight:400}
+  .detail{font-size:12.5px; color:var(--muted); margin-top:7px}
+  .detail b{color:var(--ink)}
+  .steps{margin:4px 0 0; padding-left:20px; font-size:12.5px; color:var(--muted)}
+  .steps li{margin:3px 0}
+  .empty{color:var(--amber); font-size:13px; font-style:italic}
+  .warn{background:#fdf6e9; border:1px solid #f0e0bf; color:#8a6414; padding:12px 14px; border-radius:10px;
+        font-size:13.5px; margin-top:12px}
+  /* meal detail page */
+  .meal-link{display:block; color:inherit; text-decoration:none}
+  #mealDetail{max-width:940px; margin:0 auto}
+  .back-link{display:inline-flex; align-items:center; gap:6px; color:var(--muted); font-weight:600;
+             text-decoration:none; font-size:13px; margin:2px 0 14px}
+  .back-link:hover{color:var(--green-d)}
+  .detail-card{background:var(--card); border:1px solid var(--line); border-radius:18px;
+               box-shadow:0 10px 34px rgba(20,40,30,.08); overflow:hidden}
+  .detail-hd{padding:28px 32px 22px}
+  .detail-name{margin:0; font-size:30px; letter-spacing:-.5px; line-height:1.15}
+  .detail-macros{margin-top:12px; color:var(--green-d); font-weight:700; font-size:14px}
+  .dtags{margin-top:16px; display:flex; flex-wrap:wrap; gap:7px}
+  .dtag{background:#eaf6ef; color:var(--green-d); border:1px solid #cfe8db; border-radius:20px;
+        padding:4px 12px; font-size:12px; font-weight:600; text-transform:capitalize}
+  .detail-img{display:block; width:100%; height:340px; object-fit:cover}
+  .detail-cols{display:flex; gap:44px; flex-wrap:wrap; padding:30px 32px 34px}
+  .detail-recipe{flex:1 1 320px; min-width:280px}
+  .detail-nutrition{flex:0 0 auto}
+  .dh{font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--muted);
+      margin:0 0 14px; padding-bottom:8px; border-bottom:1px solid var(--line)}
+  .detail-recipe .dh{margin-top:30px}
+  .detail-recipe .dh:first-child{margin-top:0}
+  ul.ingr{list-style:none; margin:0; padding:0; font-size:15px; color:var(--ink)}
+  ul.ingr li{position:relative; padding:7px 0 7px 22px; border-bottom:1px dashed var(--line)}
+  ul.ingr li:last-child{border-bottom:none}
+  ul.ingr li::before{content:""; position:absolute; left:3px; top:13px; width:7px; height:7px;
+                     border-radius:50%; background:var(--green)}
+  .detail-recipe .steps{list-style:none; margin:0; padding:0; counter-reset:step;
+                        font-size:16px; line-height:1.6; color:var(--ink)}
+  .detail-recipe .steps li{position:relative; margin:0; padding:0px 0 18px 42px; counter-increment:step}
+  .detail-recipe .steps li:last-child{padding-bottom:0}
+  .detail-recipe .steps li::before{content:counter(step); position:absolute; left:0; top:-1px;
+        width:27px; height:27px; border-radius:50%; background:var(--green); color:#fff; font-size:13px;
+        font-weight:700; display:flex; align-items:center; justify-content:center}
+  /* FDA-style Nutrition Facts label */
+  .nfacts{width:280px; border:1px solid #000; padding:6px 9px; background:#fff; color:#000;
+          font-family:Helvetica,Arial,sans-serif}
+  .nfacts h3{margin:0; font-size:30px; font-weight:800; letter-spacing:-.5px; line-height:1}
+  .nfacts .rule{border-top:9px solid #000; margin:3px 0}
+  .nfacts .med{border-top:5px solid #000; margin:2px 0}
+  .nfacts .thin{border-top:1px solid #000}
+  .nfacts .serv{font-size:12px}
+  .nfacts .cal-row{display:flex; justify-content:space-between; align-items:flex-end; font-weight:800; margin-top:2px}
+  .nfacts .cal-row .val{font-size:36px; line-height:.95}
+  .nfacts .dv-head{text-align:right; font-size:11px; font-weight:700; padding:2px 0}
+  .nfacts .row{display:flex; justify-content:space-between; font-size:12.5px; padding:2px 0}
+  .nfacts .row .indent{padding-left:16px; font-weight:400}
+  .nfacts .foot{font-size:10px; margin-top:3px; line-height:1.2}
+</style>
+</head>
+<body>
+<header>
+  <h1>
+    <svg class="logo" viewBox="0 0 32 32" role="img" aria-label="ChowMagician logo">
+      <defs>
+        <linearGradient id="mdg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#3bbb80"/>
+          <stop offset="1" stop-color="#1f7a52"/>
+        </linearGradient>
+      </defs>
+      <rect x="10" y="5.5" width="17" height="21" rx="4" fill="#c7e7d5" transform="rotate(9 18.5 16)"/>
+      <rect x="5" y="5.5" width="17" height="21" rx="4" fill="url(#mdg)"/>
+      <g stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+        <path d="M10 9.3v3.1a1.7 1.7 0 0 0 3.4 0V9.3"/>
+        <path d="M11.7 12.6V22.5"/>
+        <path d="M16.8 9.3c1.7 .5 1.7 5 0 6.3"/>
+        <path d="M16.8 15.6V22.5"/>
+      </g>
+    </svg>
+    <span class="wordmark">Chow<span class="accent">Magician</span></span>
+  </h1>
+</header>
+
+<main>
+  <div id="planner">
+  <section class="card">
+    <div class="row">
+      <div>
+        <label>Daily calorie target</label>
+        <input type="number" id="calories" value="2000" step="50" min="800" max="5000">
+      </div>
+      <div>
+        <label>Daily protein target (g)</label>
+        <input type="number" id="protein" value="70" step="5" min="20" max="300">
+      </div>
+    </div>
+    <div class="macro-head">
+      <span class="macro-title">Set macro ratios (% of calories) — optional</span>
+      <label class="switch"><input type="checkbox" id="macroToggle"><span class="track"></span></label>
+    </div>
+    <div id="macroPanel" class="macro-panel off">
+      <div class="pie" id="pie"></div>
+      <div class="macro-controls">
+        <div class="mrow"><span class="dot" style="background:#2e9e6b"></span><span class="mname">Protein</span>
+          <input type="range" id="mP" min="0" max="100" value="30"><span class="mval" id="mPv"></span></div>
+        <div class="mrow"><span class="dot" style="background:#c98a1e"></span><span class="mname">Carbs</span>
+          <input type="range" id="mC" min="0" max="100" value="40"><span class="mval" id="mCv"></span></div>
+        <div class="mrow"><span class="dot" style="background:#3b7dd8"></span><span class="mname">Fat</span>
+          <input type="range" id="mF" min="0" max="100" value="30"><span class="mval" id="mFv"></span></div>
+        <div class="presets" id="presets">
+          <button type="button" data-p="30" data-c="40" data-f="30">Balanced</button>
+          <button type="button" data-p="40" data-c="40" data-f="20">High-protein</button>
+          <button type="button" data-p="40" data-c="15" data-f="45">Low-carb</button>
+          <button type="button" data-p="20" data-c="5" data-f="75">Keto</button>
+        </div>
+        <p class="macro-note">Overrides the protein field. Percentages are of total calories (protein &amp;
+          carbs 4 kcal/g, fat 9 kcal/g) and are normalized to 100%.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:16px">
+      <label>Dietary restrictions / preferences</label>
+      <div class="chips" id="chips">
+        <label class="chip"><input type="checkbox" value="vegetarian">Vegetarian</label>
+        <label class="chip"><input type="checkbox" value="vegan">Vegan</label>
+        <label class="chip"><input type="checkbox" value="gluten_free">Gluten-free</label>
+        <label class="chip"><input type="checkbox" value="dairy_free">Dairy-free</label>
+        <label class="chip"><input type="checkbox" value="heart_healthy">Heart-healthy</label>
+        <label class="chip"><input type="checkbox" value="kidney_healthy">Kidney-healthy</label>
+      </div>
+    </div>
+    <div style="margin-top:16px">
+      <label>Recipe complexity</label>
+      <select id="complexity" class="sel">
+        <option value="">Any</option>
+        <option value="simple">Simpler recipes</option>
+        <option value="involved">More involved recipes</option>
+      </select>
+    </div>
+    <button class="go" id="go">Generate my 7-day plan</button>
+    <p class="disclaimer">Nutrition figures are rough estimates. For medical diets (e.g. kidney- or heart-healthy), consult your doctor or a registered dietitian.</p>
+  </section>
+
+  <div id="out"></div>
+  </div>
+  <div id="mealDetail" hidden></div>
+</main>
+
+<script>
+const $=id=>document.getElementById(id);
+const money=n=>Math.round(n).toLocaleString();
+const LABEL={breakfast:"Breakfast",lunch:"Lunch",dinner:"Dinner"};
+const DAYS=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+const MC={protein:'#2e9e6b',carbs:'#c98a1e',fat:'#3b7dd8'};
+const macroOn=()=>$('macroToggle').checked;
+
+// normalized macro percentages from the three sliders (always sum to 100)
+function macroPct(){
+  const p=+$('mP').value, c=+$('mC').value, f=+$('mF').value, s=p+c+f||1;
+  return {protein:p/s*100, carbs:c/s*100, fat:f/s*100};
+}
+function updateMacros(){
+  const pct=macroPct(), cal=+$('calories').value||2000;
+  const a=pct.protein*3.6, b=a+pct.carbs*3.6;   // slice angles for the conic-gradient pie
+  $('pie').style.background=`conic-gradient(${MC.protein} 0 ${a}deg, ${MC.carbs} ${a}deg ${b}deg, ${MC.fat} ${b}deg 360deg)`;
+  $('mPv').textContent=`${Math.round(pct.protein)}% · ${Math.round(cal*pct.protein/100/4)}g`;
+  $('mCv').textContent=`${Math.round(pct.carbs)}% · ${Math.round(cal*pct.carbs/100/4)}g`;
+  $('mFv').textContent=`${Math.round(pct.fat)}% · ${Math.round(cal*pct.fat/100/9)}g`;
+  if(macroOn())                                      // widget overrides the grams field while active
+    $('protein').value=Math.round(cal*pct.protein/100/4);
+}
+
+// pretty-print a scaled quantity: whole numbers stay whole, common fractions get glyphs, else 1 decimal
+function fmtQty(n){
+  if(Math.abs(n-Math.round(n))<0.04) return String(Math.round(n));
+  const whole=Math.floor(n), frac=n-whole;
+  for(const [v,g] of [[0.25,'¼'],[0.333,'⅓'],[0.5,'½'],[0.667,'⅔'],[0.75,'¾']])
+    if(Math.abs(frac-v)<0.06) return (whole?whole:'')+g;
+  return String(Math.round(n*10)/10);
+}
+// scale a leading quantity in an ingredient string ("200g tofu", "1/4 cup", "1 1/2 cups", "5 oz")
+function scaleIngredient(s, portion){
+  if(!portion || Math.abs(portion-1)<0.01) return s;
+  const m=s.match(/^\s*(\d+\s+\d+\/\d+|\d+\/\d+|\d*\.?\d+)/);
+  if(!m) return s;                                  // no leading number (e.g. "garlic, salt")
+  const tok=m[1].trim(); let val;
+  if(tok.includes('/')){
+    const p=tok.split(/\s+/);
+    if(p.length===2){ const [a,b]=p[1].split('/'); val=+p[0]+(+a)/(+b); }
+    else { const [a,b]=tok.split('/'); val=(+a)/(+b); }
+  } else val=+tok;
+  return fmtQty(val*portion)+s.slice(m[0].length);
+}
+
+// split an instructions string into an ordered list of steps
+function stepList(text){
+  if(!text) return "";
+  let steps;
+  if((text.match(/(?:^|\s)\d+[.)]\s+/g)||[]).length>=2)                 // model wrote its own "1. 2. 3."
+    steps=text.split(/(?:^|\s)(?=\d+[.)]\s)/);
+  else {
+    steps=text.split(/\n+/);                                            // else prefer explicit line breaks
+    if(steps.length<2) steps=text.split(/(?<=[.!?])\s+(?=[A-Z])/);      // else split into sentences
+  }
+  steps=steps.map(s=>s.trim().replace(/^\d+[.)]\s*/,'')).filter(Boolean);
+  return `<ol class="steps">${steps.map(s=>`<li>${s}</li>`).join("")}</ol>`;
+}
+
+function mealHTML(slot, m, flags){
+  if(!m) return `<div class="slot slot-${slot}"><div class="lbl">${LABEL[slot]}</div><div class="empty">No matching meal — add more recipes</div></div>`;
+  const parts=[];
+  if(flags.showK)    parts.push(`${m.potassium_mg} mg potassium`);
+  if(flags.showChol) parts.push(`${m.cholesterol_mg} mg cholesterol`);
+  if(flags.showNa)   parts.push(`${m.sodium_mg} mg sodium`);
+  const micros = parts.length ? `<div class="micros">${parts.join(" · ")} <span class="est">(est.)</span></div>` : "";
+  return `<div class="slot slot-${slot}">
+    <a class="meal-link" href="/meal/${m.id}${m.portion&&Math.abs(m.portion-1)>0.01?`?p=${m.portion}`:''}">
+      <div class="lbl">${LABEL[slot]}</div>
+      <div class="meal-name">${m.name}</div>
+      ${m.image?`<img class="meal-img" src="/${m.image}" alt="${m.name}" loading="lazy" onerror="this.style.display='none'">`:''}
+      <div class="macros">${m.calories} cal · ${m.protein_g}g protein${m.carbs_g!=null?` · ${m.carbs_g}g carbs`:''}${m.fat_g!=null?` · ${m.fat_g}g fat`:''}</div>
+      ${micros}
+      <div class="recipe-cue">Recipe <span class="tri">▸</span></div>
+    </a>
+  </div>`;
+}
+
+async function generate(){
+  const restrictions=[...document.querySelectorAll('#chips input:checked')].map(c=>c.value);
+  const calories=+$('calories').value||2000, protein=+$('protein').value||0;
+  const useMacros=macroOn();
+  const payload={calories,restrictions};
+  if(useMacros) payload.macros=macroPct(); else payload.protein=protein;
+  if($('complexity').value) payload.complexity=$('complexity').value;
+  $('out').innerHTML='<p class="plan-head sub" style="margin-left:4px">Building plan…</p>';
+  try{
+    const r=await fetch('/api/mealplan',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(payload)});
+    const d=await r.json();
+    if(!r.ok) throw new Error(d.error||'error');
+    render(d,calories,protein,restrictions,useMacros?macroPct():null);
+  }catch(e){ $('out').innerHTML='<div class="warn">⚠️ '+(e.message||'Could not build plan.')+'</div>'; }
+}
+
+function render(d,calories,protein,restrictions,macros){
+  const anyEmpty=d.days.some(day=>Object.values(day.meals).some(m=>!m));
+  const flags={showK:restrictions.includes('kidney_healthy'),
+               showChol:restrictions.includes('heart_healthy'),
+               showNa:restrictions.includes('kidney_healthy')||restrictions.includes('heart_healthy')};
+  let html=`<div class="plan-head">
+      <h2>Your 7-day plan</h2>
+      <div class="sub">Target ${money(calories)} cal${macros?` / ${Math.round(macros.protein)}% P · ${Math.round(macros.carbs)}% C · ${Math.round(macros.fat)}% F`:(protein?` / ${protein}g protein`:'')} per day · ${d.filtered_count} matching meals
+        ${restrictions.length? '· '+restrictions.map(x=>x.replace('_','-')).join(', '):''}</div>
+    </div>`;
+  if(d.filtered_count<3 || anyEmpty)
+    html+=`<div class="warn">Not many meals match these filters yet — some slots may be empty or repeat.
+      Run <b>python3 populate_meals.py</b> to generate more recipes into the datastore.</div>`;
+  html+='<div class="grid">';
+  for(const day of d.days){
+    html+=`<div class="day">
+      <div class="day-h"><span>${DAYS[day.day-1]}</span>
+        <span class="tot">${money(day.totals.calories)} cal</span></div>
+      <div class="day-macros">${day.totals.protein}g protein${day.totals.carbs?` · ${day.totals.carbs}g carbs`:''}${day.totals.fat?` · ${day.totals.fat}g fat`:''}</div>
+      ${mealHTML('breakfast',day.meals.breakfast,flags)}
+      ${mealHTML('lunch',day.meals.lunch,flags)}
+      ${mealHTML('dinner',day.meals.dinner,flags)}
+    </div>`;
+  }
+  html+='</div>';
+  $('out').innerHTML=html;
+}
+
+$('go').addEventListener('click',generate);
+
+// macro widget wiring
+$('macroToggle').addEventListener('change',e=>{
+  const on=e.target.checked, pf=$('protein');
+  $('macroPanel').classList.toggle('off', !on);        // grey out / deactivate when off
+  if(on){ pf.dataset.prev=pf.value; pf.disabled=true; updateMacros(); }   // override grams field
+  else { pf.disabled=false; if(pf.dataset.prev!==undefined) pf.value=pf.dataset.prev; }  // restore
+});
+updateMacros();   // populate the pie + labels once so the (greyed) widget looks filled in
+['mP','mC','mF','calories'].forEach(id=>$(id).addEventListener('input',updateMacros));
+$('presets').addEventListener('click',e=>{
+  const b=e.target.closest('button'); if(!b) return;
+  $('mP').value=b.dataset.p; $('mC').value=b.dataset.c; $('mF').value=b.dataset.f;
+  updateMacros();
+});
+
+/* ---------- meal detail page + routing ---------- */
+function nutritionFacts(m){
+  const line=(label,val,unit,ref)=>{
+    if(val==null) return '';
+    const pct = ref!=null ? `${Math.round(val/ref*100)}%` : '';
+    return `<div class="thin"></div><div class="row"><span><b>${label}</b> ${val}${unit}</span><span><b>${pct}</b></span></div>`;
+  };
+  return `<div class="nfacts">
+    <h3>Nutrition Facts</h3>
+    <div class="thin"></div>
+    <div class="serv">1 serving</div>
+    <div class="rule"></div>
+    <div class="serv"><b>Amount per serving</b></div>
+    <div class="cal-row"><span>Calories</span><span class="val">${m.calories??'—'}</span></div>
+    <div class="med"></div>
+    <div class="dv-head">% Daily Value*</div>
+    ${line('Total Fat',m.fat_g,'g',78)}
+    ${line('Cholesterol',m.cholesterol_mg,'mg',300)}
+    ${line('Sodium',m.sodium_mg,'mg',2300)}
+    ${line('Total Carbohydrate',m.carbs_g,'g',275)}
+    ${line('Protein',m.protein_g,'g',null)}
+    ${line('Potassium',m.potassium_mg,'mg',4700)}
+    <div class="rule"></div>
+    <div class="foot">* Percent Daily Values are based on a 2,000 calorie diet.</div>
+  </div>`;
+}
+function mealDetailHTML(m){
+  const tags=(m.tags||[]).map(t=>`<span class="dtag">${t.replace(/_/g,'-')}</span>`).join('');
+  return `<a class="back-link" href="/">← Back to plan</a>
+    <article class="detail-card">
+      <div class="detail-hd">
+        <h2 class="detail-name">${m.name}</h2>
+        <div class="detail-macros">${m.calories} cal · ${m.protein_g}g protein${m.carbs_g!=null?` · ${m.carbs_g}g carbs`:''}${m.fat_g!=null?` · ${m.fat_g}g fat`:''}</div>
+        ${tags?`<div class="dtags">${tags}</div>`:''}
+      </div>
+      ${m.image?`<img class="detail-img" src="/${m.image}" alt="${m.name}" onerror="this.style.display='none'">`:''}
+      <div class="detail-cols">
+        <div class="detail-recipe">
+          <h3 class="dh">Ingredients</h3>
+          <ul class="ingr">${(m.ingredients||[]).map(x=>`<li>${scaleIngredient(x,m.portion)}</li>`).join('')}</ul>
+          <h3 class="dh">Steps</h3>
+          ${stepList(m.instructions)}
+        </div>
+        <aside class="detail-nutrition">${nutritionFacts(m)}</aside>
+      </div>
+    </article>`;
+}
+async function showMeal(id){
+  $('planner').hidden=true; $('mealDetail').hidden=false;
+  $('mealDetail').innerHTML='<a class="back-link" href="/">← Back to plan</a><p class="sub">Loading…</p>';
+  try{
+    const r=await fetch('/api/meal?id='+id);
+    const m=await r.json();
+    if(!r.ok || !m || m.error) throw new Error('Meal not found');
+    const p=parseFloat(new URLSearchParams(location.search).get('p'))||1;   // portion from the plan
+    const view={...m, portion:p};
+    for(const f of ['calories','protein_g','carbs_g','fat_g','sodium_mg','potassium_mg','cholesterol_mg'])
+      if(view[f]!=null) view[f]=Math.round(m[f]*p);
+    $('mealDetail').innerHTML=mealDetailHTML(view);
+    window.scrollTo(0,0);
+  }catch(err){
+    $('mealDetail').innerHTML='<a class="back-link" href="/">← Back to plan</a><div class="warn">⚠️ '+(err.message||'Could not load meal.')+'</div>';
+  }
+}
+function showPlanner(){ $('mealDetail').hidden=true; $('planner').hidden=false; }
+function route(){
+  const mt=location.pathname.match(/^\/meal\/(\d+)/);
+  if(mt) showMeal(+mt[1]); else showPlanner();
+}
+document.addEventListener('click',e=>{
+  const a=e.target.closest('a.meal-link, a.back-link');
+  if(!a) return;
+  if(e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button!==0) return;   // let Cmd/Ctrl-click open a new tab
+  e.preventDefault();
+  history.pushState({}, '', a.getAttribute('href'));
+  route();
+});
+window.addEventListener('popstate', route);
+route();   // handle initial URL (supports deep links / new-tab loads of /meal/<id>)
+</script>
+</body>
+</html>

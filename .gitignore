@@ -1,0 +1,12 @@
+# secrets — never commit API keys
+.env
+.env.*
+
+# python
+__pycache__/
+*.pyc
+
+# local runtime / backups
+server.log
+meals_*_backup.json
+.DS_Store

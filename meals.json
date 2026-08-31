@@ -1,0 +1,623 @@
+[
+ {
+  "name": "Steak and Eggs Skillet with Sauteed Mushrooms",
+  "type": "breakfast",
+  "calories": 720,
+  "protein_g": 48,
+  "carbs_g": 6,
+  "fat_g": 56,
+  "sodium_mg": 420,
+  "potassium_mg": 700,
+  "cholesterol_mg": 420,
+  "tags": [
+   "gluten_free",
+   "dairy_free",
+   "high_protein",
+   "keto"
+  ],
+  "ingredients": [
+   "6 oz sirloin steak",
+   "2 large eggs",
+   "1 cup sliced mushrooms",
+   "2 tbsp olive oil",
+   "1 tbsp butter substitute or ghee",
+   "1 clove garlic, minced",
+   "1/2 tsp black pepper",
+   "1/4 tsp smoked paprika",
+   "fresh thyme, chopped"
+  ],
+  "instructions": "Pat the steak dry and season with black pepper and smoked paprika. Heat 1 tbsp olive oil in a skillet over high heat and sear the steak 3-4 minutes per side for medium-rare, then rest. In the same pan, add ghee and mushrooms with garlic and thyme, cooking 5 minutes until browned. Fry the eggs in the remaining oil to your liking. Slice the steak and serve alongside eggs and mushrooms.",
+  "id": 1,
+  "image": "images/steak-and-eggs-skillet-with-sauteed-mushrooms-1.jpg"
+ },
+ {
+  "name": "Egg White Veggie Scramble with White Rice",
+  "type": "breakfast",
+  "calories": 540,
+  "protein_g": 32,
+  "carbs_g": 62,
+  "fat_g": 16,
+  "sodium_mg": 260,
+  "potassium_mg": 420,
+  "cholesterol_mg": 0,
+  "tags": [
+   "gluten_free",
+   "dairy_free",
+   "kidney_healthy",
+   "high_protein",
+   "heart_healthy"
+  ],
+  "ingredients": [
+   "1 cup egg whites",
+   "1 cup cooked white rice",
+   "1/2 cup diced red bell pepper",
+   "1/2 cup shredded cabbage",
+   "2 tbsp olive oil",
+   "1 clove garlic, minced",
+   "1/2 tsp cumin",
+   "1/4 tsp black pepper",
+   "1 tbsp chopped fresh cilantro",
+   "lemon wedge"
+  ],
+  "instructions": "Heat 1 tbsp olive oil in a nonstick skillet over medium heat and saute the bell pepper and cabbage with garlic and cumin for 4-5 minutes until softened. Pour in the egg whites and gently scramble for 2-3 minutes until just set, seasoning with black pepper. Warm the white rice and plate it alongside the scramble. Finish with fresh cilantro and a squeeze of lemon for brightness without salt.",
+  "id": 2,
+  "image": "images/egg-white-veggie-scramble-with-white-rice-2.jpg"
+ },
+ {
+  "name": "Big Breakfast Burrito with Chorizo",
+  "type": "breakfast",
+  "calories": 820,
+  "protein_g": 36,
+  "carbs_g": 68,
+  "fat_g": 44,
+  "sodium_mg": 980,
+  "potassium_mg": 720,
+  "cholesterol_mg": 320,
+  "tags": [
+   "high_protein"
+  ],
+  "ingredients": [
+   "1 large flour tortilla",
+   "3 large eggs",
+   "3 oz cooked chorizo",
+   "1/4 cup shredded cheddar",
+   "1/4 cup black beans",
+   "2 tbsp salsa",
+   "1 tbsp olive oil",
+   "1/4 tsp smoked paprika",
+   "1/4 tsp cumin",
+   "fresh cilantro"
+  ],
+  "instructions": "Cook the chorizo in a skillet over medium heat for 5 minutes until crisp, then set aside. Whisk the eggs with cumin and scramble in olive oil for 2-3 minutes until soft. Warm the tortilla, then layer eggs, chorizo, black beans, cheese, and salsa down the center. Sprinkle with smoked paprika and cilantro, fold in the sides, and roll tightly. Sear seam-side down in the pan for 1 minute to seal.",
+  "id": 3,
+  "image": "images/big-breakfast-burrito-with-chorizo-3.jpg"
+ },
+ {
+  "name": "Coconut Chia Pudding with Berries",
+  "type": "breakfast",
+  "calories": 320,
+  "protein_g": 8,
+  "carbs_g": 28,
+  "fat_g": 20,
+  "sodium_mg": 40,
+  "potassium_mg": 280,
+  "cholesterol_mg": 0,
+  "tags": [
+   "vegetarian",
+   "vegan",
+   "gluten_free",
+   "dairy_free",
+   "heart_healthy"
+  ],
+  "ingredients": [
+   "3 tbsp chia seeds",
+   "1 cup coconut milk beverage",
+   "1/2 tsp vanilla extract",
+   "1 tbsp maple syrup",
+   "1/2 cup mixed berries",
+   "1/4 tsp cinnamon",
+   "zest of 1/2 lemon"
+  ],
+  "instructions": "Whisk together the chia seeds, coconut milk, vanilla, maple syrup, and cinnamon in a jar. Stir well, wait 5 minutes, and stir again to prevent clumping. Cover and refrigerate at least 4 hours or overnight until thick and pudding-like. Top with fresh berries and lemon zest before serving.",
+  "id": 4,
+  "image": "images/coconut-chia-pudding-with-berries-4.jpg"
+ },
+ {
+  "name": "Spinach and Feta Omelette",
+  "type": "breakfast",
+  "calories": 380,
+  "protein_g": 24,
+  "carbs_g": 5,
+  "fat_g": 30,
+  "sodium_mg": 520,
+  "potassium_mg": 480,
+  "cholesterol_mg": 380,
+  "tags": [
+   "vegetarian",
+   "gluten_free",
+   "high_protein",
+   "keto"
+  ],
+  "ingredients": [
+   "3 large eggs",
+   "1 cup fresh spinach",
+   "2 tbsp crumbled feta",
+   "1 tbsp butter",
+   "1 tbsp olive oil",
+   "1/4 tsp black pepper",
+   "pinch of nutmeg",
+   "fresh dill"
+  ],
+  "instructions": "Whisk the eggs with black pepper and a pinch of nutmeg until frothy. Melt butter in a nonstick skillet over medium-low heat, add spinach, and wilt for 1 minute. Pour in the eggs, tilting the pan to spread evenly, and cook 2-3 minutes until nearly set. Scatter feta and dill over one half, fold the omelette, and slide onto a plate.",
+  "id": 5,
+  "image": "images/spinach-and-feta-omelette-5.jpg"
+ },
+ {
+  "name": "Lemon Herb Grilled Chicken with Green Beans and Rice",
+  "type": "lunch",
+  "calories": 740,
+  "protein_g": 52,
+  "carbs_g": 66,
+  "fat_g": 22,
+  "sodium_mg": 280,
+  "potassium_mg": 650,
+  "cholesterol_mg": 130,
+  "tags": [
+   "gluten_free",
+   "dairy_free",
+   "kidney_healthy",
+   "high_protein",
+   "heart_healthy"
+  ],
+  "ingredients": [
+   "7 oz chicken breast",
+   "1 cup cooked white rice",
+   "1 cup green beans, trimmed",
+   "2 tbsp olive oil",
+   "juice and zest of 1 lemon",
+   "2 cloves garlic, minced",
+   "1/2 tsp dried oregano",
+   "1/2 tsp black pepper",
+   "1 tbsp chopped parsley"
+  ],
+  "instructions": "Marinate the chicken in 1 tbsp olive oil, lemon juice, zest, garlic, oregano, and black pepper for 15 minutes. Grill or pan-sear over medium-high heat 5-6 minutes per side until cooked through, then rest and slice. Steam or saute the green beans in the remaining olive oil for 5 minutes until tender-crisp. Serve the chicken over warm white rice with green beans, finishing with parsley and extra lemon.",
+  "id": 6,
+  "image": "images/lemon-herb-grilled-chicken-with-green-beans-and-rice-6.jpg"
+ },
+ {
+  "name": "Chicken Shawarma Rice Bowl",
+  "type": "lunch",
+  "calories": 780,
+  "protein_g": 46,
+  "carbs_g": 72,
+  "fat_g": 32,
+  "sodium_mg": 720,
+  "potassium_mg": 760,
+  "cholesterol_mg": 140,
+  "tags": [
+   "gluten_free",
+   "dairy_free",
+   "high_protein"
+  ],
+  "ingredients": [
+   "6 oz chicken thigh",
+   "1 cup cooked basmati rice",
+   "1/2 cup cucumber, diced",
+   "1/4 cup red onion, sliced",
+   "2 tbsp tahini",
+   "2 tbsp olive oil",
+   "1 tsp cumin",
+   "1 tsp coriander",
+   "1/2 tsp turmeric",
+   "1/2 tsp smoked paprika",
+   "juice of 1/2 lemon",
+   "fresh parsley"
+  ],
+  "instructions": "Toss the chicken with olive oil, cumin, coriander, turmeric, and paprika and marinate 20 minutes. Sear in a hot skillet 5-6 minutes per side until charred and cooked through, then slice. Thin the tahini with lemon juice and a splash of water to make a drizzling sauce. Build the bowl with rice, chicken, cucumber, and red onion, then drizzle with tahini sauce and top with parsley.",
+  "id": 7,
+  "image": "images/chicken-shawarma-rice-bowl-7.jpg"
+ },
+ {
+  "name": "Quinoa Chickpea Power Salad",
+  "type": "lunch",
+  "calories": 480,
+  "protein_g": 18,
+  "carbs_g": 58,
+  "fat_g": 20,
+  "sodium_mg": 320,
+  "potassium_mg": 620,
+  "cholesterol_mg": 0,
+  "tags": [
+   "vegetarian",
+   "vegan",
+   "gluten_free",
+   "dairy_free",
+   "heart_healthy"
+  ],
+  "ingredients": [
+   "3/4 cup cooked quinoa",
+   "1/2 cup chickpeas",
+   "1 cup arugula",
+   "1/4 cup shredded carrot",
+   "2 tbsp olive oil",
+   "1 tbsp red wine vinegar",
+   "1 tsp Dijon mustard",
+   "1/2 tsp cumin",
+   "1 tbsp chopped mint",
+   "black pepper"
+  ],
+  "instructions": "Whisk together olive oil, red wine vinegar, Dijon, cumin, and black pepper to make the dressing. Combine cooked quinoa, chickpeas, arugula, and shredded carrot in a bowl. Toss everything with the dressing until evenly coated. Finish with fresh mint and serve chilled or at room temperature.",
+  "id": 8,
+  "image": "images/quinoa-chickpea-power-salad-8.jpg"
+ },
+ {
+  "name": "Turkey and Avocado Lettuce Wraps",
+  "type": "lunch",
+  "calories": 360,
+  "protein_g": 32,
+  "carbs_g": 10,
+  "fat_g": 22,
+  "sodium_mg": 380,
+  "potassium_mg": 560,
+  "cholesterol_mg": 80,
+  "tags": [
+   "gluten_free",
+   "dairy_free",
+   "high_protein",
+   "keto"
+  ],
+  "ingredients": [
+   "6 oz ground turkey",
+   "4 large butter lettuce leaves",
+   "1/2 avocado, sliced",
+   "1 tbsp olive oil",
+   "1 clove garlic, minced",
+   "1 tsp grated ginger",
+   "1 tbsp coconut aminos",
+   "1/2 tsp chili flakes",
+   "1 green onion, sliced"
+  ],
+  "instructions": "Heat olive oil in a skillet over medium-high and cook the ground turkey with garlic and ginger for 6-7 minutes, breaking it up until browned. Stir in coconut aminos and chili flakes and cook 1 more minute. Spoon the turkey into lettuce leaves and top with avocado slices. Garnish with green onion and serve as handheld wraps.",
+  "id": 9,
+  "image": "images/turkey-and-avocado-lettuce-wraps-9.jpg"
+ },
+ {
+  "name": "Hearty Beef and Cabbage Stew over Rice",
+  "type": "lunch",
+  "calories": 760,
+  "protein_g": 44,
+  "carbs_g": 68,
+  "fat_g": 30,
+  "sodium_mg": 300,
+  "potassium_mg": 700,
+  "cholesterol_mg": 110,
+  "tags": [
+   "gluten_free",
+   "dairy_free",
+   "kidney_healthy",
+   "high_protein"
+  ],
+  "ingredients": [
+   "6 oz lean beef stew meat",
+   "1 cup cooked white rice",
+   "1.5 cups chopped cabbage",
+   "1/2 cup sliced carrot",
+   "2 tbsp olive oil",
+   "2 cloves garlic, minced",
+   "1 tsp smoked paprika",
+   "1/2 tsp cumin",
+   "1/4 tsp black pepper",
+   "2 cups low-sodium broth",
+   "1 tbsp chopped parsley"
+  ],
+  "instructions": "Season the beef with paprika, cumin, and black pepper, then brown in olive oil in a pot over medium-high heat for 5 minutes. Add garlic, carrot, and broth, cover, and simmer 45 minutes until beef is tender. Stir in the cabbage and cook another 10 minutes until softened. Serve the stew ladled over white rice and finish with fresh parsley.",
+  "id": 10,
+  "image": "images/hearty-beef-and-cabbage-stew-over-rice-10.jpg"
+ },
+ {
+  "name": "Mediterranean Tuna and White Bean Bowl",
+  "type": "lunch",
+  "calories": 440,
+  "protein_g": 34,
+  "carbs_g": 34,
+  "fat_g": 18,
+  "sodium_mg": 480,
+  "potassium_mg": 640,
+  "cholesterol_mg": 40,
+  "tags": [
+   "gluten_free",
+   "dairy_free",
+   "high_protein",
+   "heart_healthy"
+  ],
+  "ingredients": [
+   "1 can tuna in water, drained",
+   "1/2 cup cannellini beans",
+   "1 cup baby spinach",
+   "1/4 cup diced cucumber",
+   "2 tbsp olive oil",
+   "1 tbsp lemon juice",
+   "1 tsp dried oregano",
+   "1 clove garlic, minced",
+   "black pepper",
+   "fresh parsley"
+  ],
+  "instructions": "Whisk olive oil, lemon juice, garlic, oregano, and black pepper into a dressing. Flake the tuna into a bowl and add beans, spinach, and cucumber. Toss with the dressing until well combined. Top with fresh parsley and serve at room temperature.",
+  "id": 11,
+  "image": "images/mediterranean-tuna-and-white-bean-bowl-11.jpg"
+ },
+ {
+  "name": "Baked Cod with Cauliflower and Rice",
+  "type": "dinner",
+  "calories": 700,
+  "protein_g": 44,
+  "carbs_g": 62,
+  "fat_g": 24,
+  "sodium_mg": 290,
+  "potassium_mg": 680,
+  "cholesterol_mg": 90,
+  "tags": [
+   "gluten_free",
+   "dairy_free",
+   "kidney_healthy",
+   "high_protein",
+   "heart_healthy"
+  ],
+  "ingredients": [
+   "7 oz cod fillet",
+   "1 cup cooked white rice",
+   "1.5 cups cauliflower florets",
+   "2 tbsp olive oil",
+   "juice and zest of 1 lemon",
+   "2 cloves garlic, minced",
+   "1/2 tsp dried thyme",
+   "1/4 tsp black pepper",
+   "1 tbsp chopped dill"
+  ],
+  "instructions": "Preheat the oven to 400F. Toss cauliflower with 1 tbsp olive oil, garlic, and thyme and roast on a sheet pan for 20 minutes. Place the cod on the pan, drizzle with remaining oil, lemon juice, zest, and black pepper, and bake 12-14 minutes until flaky. Serve over warm white rice with the roasted cauliflower, finishing with fresh dill and lemon zest.",
+  "id": 12,
+  "image": "images/baked-cod-with-cauliflower-and-rice-12.jpg"
+ },
+ {
+  "name": "Creamy Tuscan Chicken Pasta",
+  "type": "dinner",
+  "calories": 880,
+  "protein_g": 48,
+  "carbs_g": 72,
+  "fat_g": 42,
+  "sodium_mg": 760,
+  "potassium_mg": 780,
+  "cholesterol_mg": 160,
+  "tags": [
+   "high_protein"
+  ],
+  "ingredients": [
+   "6 oz chicken breast",
+   "3 oz fettuccine",
+   "1/2 cup heavy cream",
+   "1 cup baby spinach",
+   "2 tbsp sun-dried tomatoes",
+   "2 tbsp parmesan",
+   "2 tbsp olive oil",
+   "2 cloves garlic, minced",
+   "1/2 tsp Italian herbs",
+   "1/4 tsp chili flakes",
+   "black pepper"
+  ],
+  "instructions": "Cook the fettuccine in salted water until al dente, then drain and reserve some pasta water. Season and sear the sliced chicken in olive oil over medium-high heat for 6 minutes until golden, then set aside. In the same pan saute garlic, sun-dried tomatoes, and Italian herbs, then pour in cream and simmer 3 minutes. Stir in spinach, parmesan, chili flakes, and the chicken, then toss with the pasta, loosening with pasta water and finishing with black pepper.",
+  "id": 13,
+  "image": "images/creamy-tuscan-chicken-pasta-13.jpg"
+ },
+ {
+  "name": "Vegan Chickpea Coconut Curry with Rice",
+  "type": "dinner",
+  "calories": 720,
+  "protein_g": 18,
+  "carbs_g": 92,
+  "fat_g": 30,
+  "sodium_mg": 460,
+  "potassium_mg": 820,
+  "cholesterol_mg": 0,
+  "tags": [
+   "vegetarian",
+   "vegan",
+   "gluten_free",
+   "dairy_free",
+   "heart_healthy"
+  ],
+  "ingredients": [
+   "1 cup chickpeas",
+   "1 cup cooked basmati rice",
+   "3/4 cup coconut milk",
+   "1/2 cup diced tomato",
+   "1/2 onion, diced",
+   "2 tbsp olive oil",
+   "2 cloves garlic, minced",
+   "1 tbsp grated ginger",
+   "1 tsp curry powder",
+   "1 tsp cumin",
+   "1/2 tsp turmeric",
+   "1/2 tsp coriander",
+   "fresh cilantro"
+  ],
+  "instructions": "Heat olive oil in a pot over medium heat and saute the onion, garlic, and ginger for 4 minutes until fragrant. Stir in curry powder, cumin, turmeric, and coriander and toast for 30 seconds. Add tomato, chickpeas, and coconut milk, then simmer for 15 minutes until thickened. Serve over basmati rice topped with fresh cilantro.",
+  "id": 14,
+  "image": "images/vegan-chickpea-coconut-curry-with-rice-14.jpg"
+ },
+ {
+  "name": "Garlic Herb Pork Chop with Sauteed Cabbage and Rice",
+  "type": "dinner",
+  "calories": 760,
+  "protein_g": 46,
+  "carbs_g": 60,
+  "fat_g": 34,
+  "sodium_mg": 300,
+  "potassium_mg": 690,
+  "cholesterol_mg": 120,
+  "tags": [
+   "gluten_free",
+   "dairy_free",
+   "kidney_healthy",
+   "high_protein"
+  ],
+  "ingredients": [
+   "7 oz boneless pork chop",
+   "1 cup cooked white rice",
+   "1.5 cups shredded cabbage",
+   "2 tbsp olive oil",
+   "2 cloves garlic, minced",
+   "1/2 tsp dried rosemary",
+   "1/2 tsp black pepper",
+   "1 tsp apple cider vinegar",
+   "1 tbsp chopped parsley"
+  ],
+  "instructions": "Season the pork chop with rosemary, garlic, and black pepper and let sit 10 minutes. Sear in 1 tbsp olive oil over medium-high heat for 4-5 minutes per side until cooked through, then rest. In the same pan saute the cabbage in remaining oil for 6 minutes, finishing with apple cider vinegar for brightness. Serve the pork over white rice alongside the cabbage, topped with parsley.",
+  "id": 15,
+  "image": "images/garlic-herb-pork-chop-with-sauteed-cabbage-and-rice-15.jpg"
+ },
+ {
+  "name": "Salmon with Lemon Butter and Asparagus",
+  "type": "dinner",
+  "calories": 520,
+  "protein_g": 40,
+  "carbs_g": 8,
+  "fat_g": 36,
+  "sodium_mg": 340,
+  "potassium_mg": 900,
+  "cholesterol_mg": 110,
+  "tags": [
+   "gluten_free",
+   "high_protein",
+   "keto",
+   "heart_healthy"
+  ],
+  "ingredients": [
+   "7 oz salmon fillet",
+   "1 cup asparagus spears",
+   "2 tbsp butter",
+   "1 tbsp olive oil",
+   "2 cloves garlic, minced",
+   "juice and zest of 1 lemon",
+   "1/2 tsp black pepper",
+   "fresh dill"
+  ],
+  "instructions": "Pat the salmon dry and season with black pepper. Heat olive oil in a skillet over medium-high and sear salmon skin-side down for 4 minutes, then flip and cook 3 more minutes. Add asparagus, butter, and garlic to the pan and cook 4 minutes until asparagus is tender. Spoon the garlic butter over the salmon, finish with lemon juice, zest, and dill, and serve.",
+  "id": 16,
+  "image": "images/salmon-with-lemon-butter-and-asparagus-16.jpg"
+ },
+ {
+  "name": "Black Bean and Sweet Potato Enchilada Bake",
+  "type": "dinner",
+  "calories": 690,
+  "protein_g": 22,
+  "carbs_g": 94,
+  "fat_g": 26,
+  "sodium_mg": 680,
+  "potassium_mg": 880,
+  "cholesterol_mg": 15,
+  "tags": [
+   "vegetarian",
+   "gluten_free"
+  ],
+  "ingredients": [
+   "1 cup black beans",
+   "1 medium sweet potato, diced",
+   "2 corn tortillas",
+   "1/2 cup enchilada sauce",
+   "1/4 cup shredded cheese",
+   "2 tbsp olive oil",
+   "1/2 tsp cumin",
+   "1/2 tsp smoked paprika",
+   "1/2 tsp chili powder",
+   "fresh cilantro"
+  ],
+  "instructions": "Preheat the oven to 400F and roast the diced sweet potato tossed with olive oil, cumin, paprika, and chili powder for 20 minutes. Mash lightly with the black beans and spoon onto torn corn tortillas in a baking dish. Pour enchilada sauce over the top and sprinkle with cheese. Bake 15 minutes until bubbly and finish with fresh cilantro.",
+  "id": 17,
+  "image": "images/black-bean-and-sweet-potato-enchilada-bake-17.jpg"
+ },
+ {
+  "name": "Greek Yogurt with Honey and Walnuts",
+  "type": "snack",
+  "calories": 260,
+  "protein_g": 18,
+  "carbs_g": 24,
+  "fat_g": 10,
+  "sodium_mg": 60,
+  "potassium_mg": 300,
+  "cholesterol_mg": 15,
+  "tags": [
+   "vegetarian",
+   "gluten_free",
+   "high_protein"
+  ],
+  "ingredients": [
+   "3/4 cup plain Greek yogurt",
+   "1 tbsp honey",
+   "2 tbsp chopped walnuts",
+   "1/4 tsp cinnamon",
+   "zest of 1/2 orange"
+  ],
+  "instructions": "Spoon the Greek yogurt into a bowl. Drizzle with honey and sprinkle with chopped walnuts. Dust with cinnamon and orange zest, then serve immediately.",
+  "id": 18,
+  "image": "images/greek-yogurt-with-honey-and-walnuts-18.jpg"
+ },
+ {
+  "name": "Cucumber Hummus Snack Plate",
+  "type": "snack",
+  "calories": 220,
+  "protein_g": 7,
+  "carbs_g": 20,
+  "fat_g": 13,
+  "sodium_mg": 280,
+  "potassium_mg": 320,
+  "cholesterol_mg": 0,
+  "tags": [
+   "vegetarian",
+   "vegan",
+   "gluten_free",
+   "dairy_free",
+   "heart_healthy"
+  ],
+  "ingredients": [
+   "1/3 cup hummus",
+   "1 cucumber, sliced",
+   "1/2 red bell pepper, sliced",
+   "1 tbsp olive oil",
+   "1/2 tsp smoked paprika",
+   "squeeze of lemon",
+   "fresh parsley"
+  ],
+  "instructions": "Spoon the hummus into a small bowl and drizzle with olive oil. Dust with smoked paprika and add a squeeze of lemon. Arrange sliced cucumber and bell pepper around the bowl for dipping and garnish with parsley.",
+  "id": 19,
+  "image": "images/cucumber-hummus-snack-plate-19.jpg"
+ },
+ {
+  "name": "Deviled Egg Bites",
+  "type": "snack",
+  "calories": 180,
+  "protein_g": 13,
+  "carbs_g": 2,
+  "fat_g": 14,
+  "sodium_mg": 220,
+  "potassium_mg": 150,
+  "cholesterol_mg": 380,
+  "tags": [
+   "gluten_free",
+   "dairy_free",
+   "kidney_healthy",
+   "high_protein",
+   "keto"
+  ],
+  "ingredients": [
+   "2 hard-boiled eggs",
+   "1 tbsp olive oil mayo",
+   "1/2 tsp Dijon mustard",
+   "1/4 tsp smoked paprika",
+   "pinch of black pepper",
+   "1 tsp chopped chives"
+  ],
+  "instructions": "Halve the hard-boiled eggs and scoop the yolks into a bowl. Mash the yolks with mayo, Dijon, and black pepper until smooth. Spoon or pipe the mixture back into the egg whites. Dust with smoked paprika and top with chopped chives before serving.",
+  "id": 20,
+  "image": "images/deviled-egg-bites-20.jpg"
+ }
+]
