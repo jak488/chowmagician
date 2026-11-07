@@ -5,12 +5,17 @@ Generates in batches until meals.json holds target_total meals, de-duplicating b
 name and telling Claude which names already exist so each batch stays fresh. Writes
 after every batch, so progress is saved even if interrupted.
 
+Targeted top-up for a thin restriction combo (see coverage_check.py):
+  python3 populate_meals.py --combo vegan,kidney_healthy 24
+generates ~24 NEW meals that all satisfy every listed tag, appended to meals.json.
+
 Needs ANTHROPIC_API_KEY (env var or a .env file next to this script).
 Model: set MEAL_MODEL to choose the model (default claude-opus-4-8). For a big, cheap
 batch:  MEAL_MODEL=claude-haiku-4-5 python3 populate_meals.py 200
 """
 import json, os, sys
 from collections import Counter
+from normalize_tags import normalize   # enforce vegan -> vegetarian + dairy_free after generating
 
 TAGS = ["vegetarian", "vegan", "gluten_free", "dairy_free",
         "heart_healthy", "kidney_healthy", "high_protein", "keto"]
@@ -61,10 +66,19 @@ HIGH-FAT meals (avocado, nuts, cheese, oils, fatty fish); some LOW-CARB meals AN
 meal around a balanced ~30/40/30 protein/carb/fat split — spread them across the whole spectrum.
 - Ensure good coverage of these diets, with SEVERAL qualifying meals for each: vegetarian, vegan, \
 gluten_free, dairy_free, heart_healthy, kidney_healthy, high_protein.
-- IMPORTANT for hard combos: include at least 2-3 meals that are simultaneously gluten_free + dairy_free \
-+ kidney_healthy for EACH of breakfast, lunch, and dinner, some of them hearty 700+ kcal (lean protein + \
-white rice + low-potassium veggies like green beans, cabbage, bell peppers, cauliflower; eggs/egg whites \
-are dairy-free, so tag egg dishes without cheese/milk as dairy_free).
+- CRITICAL — hard restrictive combos need deliberate OVER-representation, because they are naturally \
+rare and a 7-day plan needs 7 of each meal type. Treat these as explicit quotas to hit across the full \
+run (spread the effort over batches), for EACH of breakfast, lunch, and dinner:
+    * gluten_free + kidney_healthy: aim for >=8 per meal type
+    * gluten_free + dairy_free + kidney_healthy: aim for >=8 per meal type
+    * dairy_free + kidney_healthy: >=8 per meal type
+    * heart_healthy + kidney_healthy: >=8 per meal type
+    * vegan + kidney_healthy: >=5 per meal type (hard — lean on tofu, egg-white is NOT vegan; use \
+low-potassium plant foods: white rice, cauliflower, green beans, bell peppers, cabbage; avoid beans, \
+nuts, potatoes, tomatoes, spinach, bananas)
+    * vegan + gluten_free and vegetarian + gluten_free + dairy_free: >=6 per meal type
+  Build these from lean protein + white rice/low-potassium veggies; make some hearty 700+ kcal. Eggs/egg \
+whites are dairy-free (tag egg dishes without cheese/milk as dairy_free) but are NOT vegan.
 - Tag each meal with ALL applicable tags. Be consistent: a vegan meal is also vegetarian and dairy_free; \
 a meal with >=30g protein is high_protein; kidney_healthy means lower sodium/potassium/phosphorus \
 (avoid heavy beans, dairy, nuts, potatoes, tomatoes, bananas for those); keto means very low carb \
@@ -102,22 +116,54 @@ def _load_dotenv(path=".env"):
         pass
 
 
-def generate(n, avoid_names=()):
+COMBO_PROMPT = """Generate {n} diverse, realistic, home-cookable single-serving meals that EVERY ONE of \
+them satisfies ALL of these dietary tags simultaneously: {tags}.
+
+Rules:
+- EVERY meal must genuinely qualify for ALL of those tags at once — this is the whole point. Tag each \
+meal with those tags plus any others that also apply.
+- Spread them roughly evenly across breakfast, lunch, and dinner (and a few snacks if natural).
+- Vary calories and the protein/carb/fat mix; include some hearty 700+ kcal options.
+- Reminders: vegan = no animal products at all (no eggs, dairy, meat, fish, honey); eggs/egg whites are \
+dairy_free and vegetarian but NOT vegan; kidney_healthy = low sodium, potassium, and phosphorus — avoid \
+beans, lentils, nuts, potatoes, tomatoes, spinach, bananas, dairy, whole grains; lean on white rice, \
+cauliflower, green beans, cabbage, bell peppers, and (for vegan+kidney) tofu and low-potassium plant \
+foods; heart_healthy = low cholesterol and sodium, unsaturated fats; build flavor with herbs, spices, \
+citrus, and aromatics instead of salt.
+- carbs_g, fat_g, sodium_mg, potassium_mg, cholesterol_mg are rough per-serving integer estimates; \
+cholesterol_mg is 0 for vegan meals.
+- ingredients: a full list with rough quantities including specific seasonings/spices. instructions: \
+clear, detailed steps as full sentences, as many as the recipe genuinely needs.
+- Use varied cuisines and proteins; keep names distinct.{avoid}"""
+
+
+def _call(prompt_text):
     import anthropic
     client = anthropic.Anthropic()
-    avoid = ""
-    if avoid_names:
-        avoid = "\n- Do NOT reuse any of these existing meal names (invent different dishes): " + \
-                ", ".join(sorted(avoid_names))
     resp = client.messages.create(
         model=os.environ.get("MEAL_MODEL", "claude-opus-4-8"),
         max_tokens=12000,
         system="You are a chef and nutrition-aware meal-planning assistant. Return only data matching the schema.",
-        messages=[{"role": "user", "content": PROMPT.format(n=n, avoid=avoid)}],
+        messages=[{"role": "user", "content": prompt_text}],
         output_config={"format": {"type": "json_schema", "schema": SCHEMA}},
     )
     text = next(b.text for b in resp.content if b.type == "text")
     return json.loads(text)["meals"]
+
+
+def _avoid_str(avoid_names):
+    if not avoid_names:
+        return ""
+    return "\n- Do NOT reuse any of these existing meal names (invent different dishes): " + \
+           ", ".join(sorted(avoid_names))
+
+
+def generate(n, avoid_names=()):
+    return _call(PROMPT.format(n=n, avoid=_avoid_str(avoid_names)))
+
+
+def generate_combo(n, tags, avoid_names=()):
+    return _call(COMBO_PROMPT.format(n=n, tags=" + ".join(tags), avoid=_avoid_str(avoid_names)))
 
 
 def main():
@@ -125,12 +171,47 @@ def main():
     _load_dotenv()
     if not os.environ.get("ANTHROPIC_API_KEY"):
         sys.exit("Set ANTHROPIC_API_KEY (env var or a .env file next to this script) first.")
-    target = int(sys.argv[1]) if len(sys.argv) > 1 else 200
+    model = os.environ.get("MEAL_MODEL", "claude-opus-4-8")
     BATCH = 20
+
+    # targeted mode:  python3 populate_meals.py --combo vegan,kidney_healthy [count]
+    combo = None
+    if len(sys.argv) > 1 and sys.argv[1] == "--combo":
+        combo = [t.strip() for t in sys.argv[2].split(",") if t.strip()]
+        want = int(sys.argv[3]) if len(sys.argv) > 3 else 24       # new meals to ADD for this combo
+    else:
+        target = int(sys.argv[1]) if len(sys.argv) > 1 else 200    # total meals to reach
 
     existing = json.load(open("meals.json")) if os.path.exists("meals.json") else []
     seen = {m["name"].lower() for m in existing}
-    model = os.environ.get("MEAL_MODEL", "claude-opus-4-8")
+
+    if combo:   # ── targeted top-up for one hard combo ───────────────────────────
+        print(f"targeting combo [{' + '.join(combo)}] · adding up to {want} · model {model}")
+        added_total, stalls = 0, 0
+        while added_total < want and stalls < 3:
+            need = min(BATCH, want - added_total + 4)
+            try:
+                batch = generate_combo(need, combo, avoid_names=list(seen))
+            except Exception as e:
+                print("  batch failed:", e); break
+            added = 0
+            for m in batch:
+                if m["name"].lower() in seen:
+                    continue
+                if not set(combo).issubset(set(m.get("tags", []))):   # enforce the combo
+                    continue
+                m["id"] = len(existing) + 1
+                existing.append(m); seen.add(m["name"].lower())
+                added += 1; added_total += 1
+                if added_total >= want:
+                    break
+            normalize(existing)
+            json.dump(existing, open("meals.json", "w"), indent=1)
+            print(f"  +{added} qualifying  ->  {added_total}/{want} added  ({len(existing)} total)")
+            stalls = stalls + 1 if added == 0 else 0
+        print(f"\ndone: added {added_total} [{' + '.join(combo)}] meals -> {len(existing)} total")
+        return
+
     print(f"target {target} meals · currently {len(existing)} · model {model}")
 
     stalls = 0
@@ -148,6 +229,7 @@ def main():
             existing.append(m); seen.add(m["name"].lower()); added += 1
             if len(existing) >= target:
                 break
+        normalize(existing)                                      # keep tags logically consistent
         json.dump(existing, open("meals.json", "w"), indent=1)   # save after every batch
         print(f"  +{added} new  ->  {len(existing)} total")
         stalls = stalls + 1 if added == 0 else 0
